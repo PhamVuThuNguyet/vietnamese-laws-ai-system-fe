@@ -8,7 +8,7 @@ describe('Homepage', () => {
   it('renders the Components', () => {
     render(<HomePage />);
 
-    const heading = screen.getByText(/A starter for Next.js/i);
+    const heading = screen.getByText(/Tra cứu văn bản QPPL/i);
 
     expect(heading).toBeInTheDocument();
   });

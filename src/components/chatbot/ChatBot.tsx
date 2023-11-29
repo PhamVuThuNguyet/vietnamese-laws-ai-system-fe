@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { FormEvent, Fragment, useEffect, useRef, useState } from 'react';
 
 import ChatInput from '@/components/chatbot/ChatInput';
 
@@ -21,7 +21,7 @@ const ChatBot = () => {
     setOpen(!open);
   };
 
-  const onSendMessage = async (e: unknown) => {
+  const onSendMessage = async (e: FormEvent) => {
     e.preventDefault();
     if (inputText === '') return;
 

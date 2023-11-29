@@ -7,7 +7,13 @@ import { NodeRendererProps, Tree } from 'react-arborist';
 import ChatBot from '@/components/chatbot/ChatBot';
 import { Input } from '@/components/ui/input';
 
-const documents = Array(100)
+type IDocument = {
+  id: string;
+  title: string;
+  children?: IDocument[];
+};
+
+const documents: IDocument[] = Array(100)
   .fill(0)
   .map((_, i) => ({
     id: `${i}`,
@@ -26,10 +32,10 @@ const documents = Array(100)
       })),
   }));
 
-function Node({ node, style, dragHandle }: NodeRendererProps<any>) {
+function Node({ node, style, dragHandle }: NodeRendererProps<IDocument>) {
   const onClick = () => {
     node.toggle();
-    console.log(node.data);
+    // console.log(node.data);
   };
 
   return (
