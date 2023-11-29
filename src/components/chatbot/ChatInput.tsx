@@ -1,4 +1,5 @@
 import { ArrowUpSquare } from 'lucide-react';
+import { FormEvent } from 'react';
 
 import IconButton from '@/components/buttons/IconButton';
 import { Textarea } from '@/components/ui/textarea';
@@ -6,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 interface Props {
   inputText: string;
   setInputText: (value: string) => void;
-  onSendMessage: (e: any) => void;
+  onSendMessage: (e: FormEvent) => void;
 }
 
 const ChatInput = ({ inputText, setInputText, onSendMessage }: Props) => {

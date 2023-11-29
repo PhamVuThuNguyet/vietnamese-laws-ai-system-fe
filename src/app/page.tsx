@@ -35,7 +35,6 @@ const documents: IDocument[] = Array(100)
 function Node({ node, style, dragHandle }: NodeRendererProps<IDocument>) {
   const onClick = () => {
     node.toggle();
-    // console.log(node.data);
   };
 
   return (
