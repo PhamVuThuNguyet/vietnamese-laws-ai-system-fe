@@ -76,7 +76,7 @@ module.exports = {
       },
     ],
     //#endregion  //*======== Import Sort ===========
-    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
   },
   globals: {
     React: true,
