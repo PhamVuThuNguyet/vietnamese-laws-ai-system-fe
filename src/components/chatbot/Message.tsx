@@ -7,7 +7,11 @@ export type MessageProps = {
   isLoading?: boolean;
 };
 
-const Message = ({ message, isUser = false, isLoading = false }: any) => {
+const Message = ({
+  message,
+  isUser = false,
+  isLoading = false,
+}: MessageProps) => {
   return (
     <div className={clsx(isUser ? 'self-end pl-4' : ' self-start pr-4')}>
       <motion.div

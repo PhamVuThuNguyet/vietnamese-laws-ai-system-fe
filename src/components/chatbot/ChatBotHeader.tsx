@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-const ChatBotHeader = ({ onCloseChatBot }: any) => {
+const ChatBotHeader = ({ onCloseChatBot }: { onCloseChatBot: () => void }) => {
   return (
     <div className='bg-primary text-primary-foreground flex h-20 items-center justify-between px-8'>
       <div className='flex flex-row items-center space-x-2'>

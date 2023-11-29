@@ -1,9 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
-const ChatLaunch = ({ open, onClick }: any) => {
+type Props = {
+  open: boolean;
+  onClick: (e: FormEvent) => void;
+};
+
+const ChatLaunch = ({ open, onClick }: Props) => {
   const [hover, setHover] = useState(false);
 
   return (
