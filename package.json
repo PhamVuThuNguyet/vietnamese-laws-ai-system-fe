@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
+    "@tanstack/react-query": "^5.10.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.5",
@@ -28,6 +29,7 @@
     "react-arborist": "^3.3.0-rc.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
+    "react-virtualized-auto-sizer": "^1.0.20",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -36,6 +38,7 @@
     "@commitlint/config-conventional": "^16.2.4",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/forms": "^0.5.6",
+    "@tanstack/eslint-plugin-query": "^5.10.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@types/react": "^18.2.25",

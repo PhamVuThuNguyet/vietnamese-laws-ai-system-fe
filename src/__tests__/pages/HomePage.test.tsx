@@ -2,11 +2,16 @@
 
 import { render, screen } from '@testing-library/react';
 
+import RootLayout from '@/app/layout';
 import HomePage from '@/app/page';
 
 describe('Homepage', () => {
   it('renders the Components', () => {
-    render(<HomePage />);
+    render(
+      <RootLayout>
+        <HomePage />
+      </RootLayout>
+    );
 
     const heading = screen.getByText(/Tra cứu văn bản QPPL/i);
 

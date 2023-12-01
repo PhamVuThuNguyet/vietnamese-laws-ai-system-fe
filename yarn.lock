@@ -1774,6 +1774,25 @@
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
+"@tanstack/eslint-plugin-query@^5.10.0":
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/eslint-plugin-query/-/eslint-plugin-query-5.10.0.tgz#e8ea1f4678d2de412a92299e29aaeaee2df5b040"
+  integrity sha512-gbvdw5qGfk3/eNUPKq+akR/JUqI6rfEILulUWx2utiMHXmPSRmExCbK7YLGy9yrfK4Mi5njT7UshVX3awlrQbw==
+  dependencies:
+    "@typescript-eslint/utils" "^5.54.0"
+
+"@tanstack/query-core@5.10.0":
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.10.0.tgz#e6fd5abd35f4f51e001bb4e721e1725d6a151805"
+  integrity sha512-wlw/l2E+U70iABaJnOtZIJN/5VMhuj4RPViafwUYiIGoqw1VqqqaxBnBL90qLhWswoOaK8RAj3+NiG0duk+cRg==
+
+"@tanstack/react-query@^5.10.0":
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.10.0.tgz#7ab248ec8dc4fd4e0d103618d35f119007c4e8e7"
+  integrity sha512-LeJsyXUvhq1TBsEbt3SSEaxP2Att1sv/qW588GL/bvjxPxsLUBWKGuFJ5Z1YP+/nJqVmcXJE8AtvZaaxE9rsKQ==
+  dependencies:
+    "@tanstack/query-core" "5.10.0"
+
 "@testing-library/dom@^8.5.0":
   version "8.13.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.13.0.tgz#bc00bdd64c7d8b40841e27a70211399ad3af46f5"
@@ -2103,7 +2122,7 @@
     semver "^7.5.4"
     ts-api-utils "^1.0.1"
 
-"@typescript-eslint/utils@5.62.0":
+"@typescript-eslint/utils@5.62.0", "@typescript-eslint/utils@^5.54.0":
   version "5.62.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.62.0.tgz#141e809c71636e4a75daa39faed2fb5f4b10df86"
   integrity sha512-n8oxjeb5aIbPFEtmQxQYOLI0i9n5ySBEY/ZEHHZqKQSFnxio1rv6dthascc9dLuwrL0RC5mPCxB7vnAVGAYWAQ==
@@ -5788,6 +5807,11 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-virtualized-auto-sizer@^1.0.20:
+  version "1.0.20"
+  resolved "https://registry.yarnpkg.com/react-virtualized-auto-sizer/-/react-virtualized-auto-sizer-1.0.20.tgz#d9a907253a7c221c52fa57dc775a6ef40c182645"
+  integrity sha512-OdIyHwj4S4wyhbKHOKM1wLSj/UDXm839Z3Cvfg2a9j+He6yDa6i5p0qQvEiCnyQlGO/HyfSnigQwuxvYalaAXA==
 
 react-window@^1.8.6:
   version "1.8.10"
