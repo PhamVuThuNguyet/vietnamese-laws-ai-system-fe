@@ -2,7 +2,6 @@
 
 import { FileText, FolderNotch, FolderNotchOpen } from '@phosphor-icons/react';
 import { useQuery } from '@tanstack/react-query';
-import Head from 'next/head';
 import { useMemo } from 'react';
 import { NodeRendererProps, Tree } from 'react-arborist';
 
@@ -13,7 +12,8 @@ import { getTopics } from '@/lib/api/topics';
 import { getVietnamesNameNodeTypes } from '@/lib/helper';
 import { NodeData, NodeTypes } from '@/lib/types';
 
-import ChatBot from '@/components/chatbot/ChatBot';
+import Container from '@/components/Container';
+import UnderlineLink from '@/components/links/UnderlineLink';
 import { Input } from '@/components/ui/input';
 
 const getIcon = (type: NodeTypes, open: boolean) => {
@@ -109,15 +109,23 @@ export default function HomePage() {
       >
         <span>{getIcon(node.data.type, node.isOpen)}</span>
         <p className='font-medium'>{title}</p>
+        {node.data.type === NodeTypes.SUBJECT && (
+          <UnderlineLink
+            href={`/legal-documents?subjectId=${Number(
+              node.data.id.slice(node.data.type.length + 1)
+            )}`}
+            target='_blank'
+            className='text-sm text-gray-400 hover:text-gray-600'
+          >
+            (Xem danh mục văn bản)
+          </UnderlineLink>
+        )}
       </div>
     );
   };
 
   return (
-    <main className='relative flex  justify-center bg-white'>
-      <Head>
-        <title>Hi</title>
-      </Head>
+    <Container>
       <section className='flex min-h-screen w-full max-w-xl flex-1 flex-col space-y-4 py-8'>
         <h1 className='text-center'>Tra cứu văn bản QPPL</h1>
         <Input type='text' placeholder='Nhập từ khóa tìm kiếm' />
@@ -143,7 +151,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <ChatBot />
-    </main>
+    </Container>
   );
 }
