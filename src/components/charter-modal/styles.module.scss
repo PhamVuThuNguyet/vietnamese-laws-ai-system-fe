@@ -1,0 +1,52 @@
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .content {
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #fff;
+    width: fit-content;
+    max-width: 50%;
+    max-height: 80%;
+    overflow-y: scroll;
+
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .note {
+      > a {
+        font-size: 14px;
+        font-style: italic;
+        color: rgb(0, 128, 0);
+      }
+    }
+
+    .description {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .related {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      font-style: italic;
+      .related-item {
+        color: rgb(0, 128, 0);
+        cursor: pointer;
+      }
+    }
+  }
+}

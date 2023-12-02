@@ -2,16 +2,17 @@
 
 import { FileText, FolderNotch, FolderNotchOpen } from '@phosphor-icons/react';
 import { useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { NodeRendererProps, Tree } from 'react-arborist';
 
 import { getCharters } from '@/lib/api/charters';
 import { getIndexings } from '@/lib/api/indexing';
 import { getSubject } from '@/lib/api/subjects';
 import { getTopics } from '@/lib/api/topics';
-import { getVietnamesNameNodeTypes } from '@/lib/helper';
+import { getOrderNode, getVietnamesNameNodeTypes } from '@/lib/helper';
 import { NodeData, NodeTypes } from '@/lib/types';
 
+import CharterModal from '@/components/charter-modal';
 import Container from '@/components/Container';
 import UnderlineLink from '@/components/links/UnderlineLink';
 import { Input } from '@/components/ui/input';
@@ -47,11 +48,15 @@ export default function HomePage() {
     queryFn: getTopics,
   });
 
-  const openNode = async (nodeData: NodeData) => {
-    if (nodeData.children !== undefined && nodeData.children.length > 0) {
-      return;
-    }
+  const [selectedCharter, setSelectedCharter] = useState({});
+  const [search, setSearch] = useState('');
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    window.open(`/search?q=${search}&page=1`);
+  };
+
+  const openNode = async (nodeData: NodeData) => {
     // example: nodeData.id = 'topic-1' -> nodeData.type.length + 1 = 'topic-'.length -> slice it get id = '1
     const id = Number(nodeData.id.slice(nodeData.type.length + 1));
 
@@ -61,7 +66,20 @@ export default function HomePage() {
     } else if (nodeData.type === NodeTypes.SUBJECT) {
       childrenData = await getIndexings(id);
     } else if (nodeData.type === NodeTypes.INDEXING) {
-      childrenData = await getCharters(id);
+      childrenData = await getCharters(id, {
+        level: 1,
+      });
+    } else if (nodeData.type === NodeTypes.CHARTER) {
+      const { level, indexing_id } = nodeData;
+      const childCharters = await getCharters(Number(indexing_id), {
+        level: Number(level) + 1,
+        parent_charter_id: id,
+      });
+      if (childCharters.length > 0) {
+        childrenData = childCharters;
+      } else {
+        setSelectedCharter(nodeData);
+      }
     }
     nodeData.children = childrenData;
   };
@@ -71,44 +89,29 @@ export default function HomePage() {
       () =>
         `${
           [NodeTypes.SUBJECT, NodeTypes.TOPIC].includes(node.data.type)
-            ? getVietnamesNameNodeTypes(node.data.type) + ': '
+            ? getVietnamesNameNodeTypes(node.data.type) +
+              ` ${getOrderNode(node.data.type, node)}: `
             : ''
         }${node.data.name}`,
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [node.data.name, node.data.type]
     );
 
     const onClick = () => {
-      if (node.isLeaf) {
-        return;
-      } else {
-        openNode(node.data).then(() => {
-          node.toggle();
-        });
-      }
+      openNode(node.data).then(() => {
+        node.toggle();
+      });
     };
-
-    if (node.isLeaf)
-      return (
-        <a
-          target='_blank'
-          href={node.data.note[0]['link'] as unknown as string}
-          rel='noopener noreferrer'
-          style={style}
-          className='flex cursor-pointer flex-row items-center space-x-2 hover:bg-gray-100'
-        >
-          <span>{getIcon(node.data.type, node.isOpen)}</span>
-          <p className='font-medium'>{title}</p>
-        </a>
-      );
 
     return (
       <div
         style={style}
-        onClick={onClick}
         className='flex cursor-pointer flex-row items-center space-x-2 hover:bg-gray-100'
       >
-        <span>{getIcon(node.data.type, node.isOpen)}</span>
-        <p className='font-medium'>{title}</p>
+        <span onClick={onClick}>{getIcon(node.data.type, node.isOpen)}</span>
+        <p className='font-medium' onClick={onClick}>
+          {title}
+        </p>
         {node.data.type === NodeTypes.SUBJECT && (
           <UnderlineLink
             href={`/legal-documents?subjectId=${Number(
@@ -126,13 +129,32 @@ export default function HomePage() {
 
   return (
     <Container>
+      {Object.values(selectedCharter).length > 0 && (
+        <CharterModal
+          data={selectedCharter}
+          onClose={() => setSelectedCharter({})}
+        />
+      )}
+
       <section className='flex min-h-screen w-full max-w-xl flex-1 flex-col space-y-4 py-8'>
         <h1 className='text-center'>Tra cứu văn bản QPPL</h1>
-        <Input type='text' placeholder='Nhập từ khóa tìm kiếm' />
+        <form className='flex items-center' onSubmit={handleSubmit}>
+          <Input
+            type='text'
+            placeholder='Nhập từ khóa tìm kiếm'
+            name='search'
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button
+            type='submit'
+            className='primary text-no-wrap	ml-2 h-10 rounded-sm bg-blue-800 px-2 text-white'
+          >
+            Tìm kiếm
+          </button>
+        </form>
 
         <div className='flex w-full flex-1 flex-col items-start space-y-4'>
-          <h2>Đề mục</h2>
-
           <div className='w-full flex-1 overflow-x-auto'>
             {isLoading && <p>Loading...</p>}
             {topicsData !== undefined && (

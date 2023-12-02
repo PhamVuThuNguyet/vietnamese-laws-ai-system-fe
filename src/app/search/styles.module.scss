@@ -1,0 +1,29 @@
+.charter-data {
+  .charter {
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    &:hover {
+      background-color: #e8e7e8;
+    }
+
+    .charter-title {
+      color: #006699;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 8px 0;
+      border-bottom: 2px solid #adbbc1;
+      margin-bottom: 8px;
+    }
+
+    .charter-description {
+      font-size: 14px;
+      max-height: 80px;
+      overflow-y: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+  }
+}
