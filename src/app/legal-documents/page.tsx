@@ -68,9 +68,10 @@ const LegalDocumentsPage = () => {
                     >
                       {item.name}
                     </th>
-                    <td className='px-2 py-2'></td>
+                    <td className='px-2 py-2'>{item.issuing_authority}</td>
                     <td className='px-2 py-2'>{item.issued_date}</td>
                     <td className='px-2 py-2'>{item.effective_date}</td>
+                    <td className='px-2 py-2'>{item.doc_type}</td>
                   </tr>
                 ))}
               </tbody>
