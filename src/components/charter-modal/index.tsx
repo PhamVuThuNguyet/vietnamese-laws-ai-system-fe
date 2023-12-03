@@ -1,20 +1,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react';
+import { IoFlagOutline } from 'react-icons/io5';
+import { IoClose } from 'react-icons/io5';
 import { useOnClickOutside } from 'usehooks-ts';
 
 import styles from './styles.module.scss';
 
 import { getCharterById } from '@/lib/api/charters';
 
+import FeedbackModal from '../feedback-modal';
+
 type CharterModalProps = {
   onClose: () => void;
   data: Record<string, any>;
+  keyword: string;
 };
 
-export default function CharterModal({ onClose, data }: CharterModalProps) {
+export default function CharterModal({
+  onClose,
+  data,
+  keyword,
+}: CharterModalProps) {
   const ref = useRef(null);
 
   const [charterData, setCharterData] = useState(data);
+  const [feedbackData, setFeedbackData] = useState({});
 
   const fetchRelatedCharter = async (charter: Record<string, any>) => {
     const related = [];
@@ -57,6 +67,33 @@ export default function CharterModal({ onClose, data }: CharterModalProps) {
   return (
     <div className={styles.container}>
       <div className={styles.content} ref={ref}>
+        {Object.values(feedbackData).length > 0 && (
+          <FeedbackModal
+            data={feedbackData}
+            onClose={() => setFeedbackData({})}
+          />
+        )}
+        <div className={styles.heading}>
+          <div className={styles['heading-title']}>Nội dung văn bản</div>
+          <div className={styles['heading-button-control']}>
+            {keyword && (
+              <div
+                className={styles['heading-button']}
+                onClick={() =>
+                  setFeedbackData({
+                    charter_title: charterData.name,
+                    search_keyword: keyword,
+                  })
+                }
+              >
+                <IoFlagOutline size={18} />
+              </div>
+            )}
+            <div className={styles['heading-button']} onClick={onClose}>
+              <IoClose size={18} />
+            </div>
+          </div>
+        </div>
         <div className={styles.title}>{charterData.name}</div>
         <div className={styles.note}>
           {charterData.note.map((note: Record<string, any>, index: number) => (

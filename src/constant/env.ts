@@ -6,4 +6,4 @@ export const showLogger = isLocal
   : process.env.NEXT_PUBLIC_SHOW_LOGGER === 'true' ?? false;
 
 export const baseUrl =
-  process.env.NEXT_PUBLIC_API_GATEWAY || 'http://localhost:3001';
+  process.env.NEXT_PUBLIC_API_GATEWAY || 'http://localhost:3001/api/v1';
