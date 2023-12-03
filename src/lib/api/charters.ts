@@ -1,5 +1,3 @@
-import queryString from 'query-string';
-
 import { baseUrl } from '@/constant/env';
 
 import { NodeData, NodeTypes } from '../types';
@@ -29,8 +27,18 @@ export const getCharterById = async (id: number) => {
   return (await response.json()).data[0];
 };
 
-export const getChartersByConditions = async (params = {}) => {
-  const url = `${baseUrl}/charters?${queryString.stringify(params)}`;
+export const getChartersByConditions = async (
+  params: Record<string, any> = {}
+) => {
+  let query = '';
+  Object.keys(params).map((key) => {
+    if (query === '') query += `${key}=${params[key]}`;
+    else {
+      query += `&${key}=${params[key]}`;
+    }
+  });
+
+  const url = `${baseUrl}/charters?${query}`;
   const response = await fetch(url);
   return await response.json();
 };
