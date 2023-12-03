@@ -133,6 +133,7 @@ export default function HomePage() {
         <CharterModal
           data={selectedCharter}
           onClose={() => setSelectedCharter({})}
+          keyword=''
         />
       )}
 
