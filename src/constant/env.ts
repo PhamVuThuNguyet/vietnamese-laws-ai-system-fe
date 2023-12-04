@@ -7,3 +7,6 @@ export const showLogger = isLocal
 
 export const baseUrl =
   process.env.NEXT_PUBLIC_API_GATEWAY || 'http://localhost:3001/api/v1';
+
+export const aiBaseUrl =
+  process.env.NEXT_PUBLIC_AI_BASE_URL || 'http://localhost:9000';
