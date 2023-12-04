@@ -26,6 +26,7 @@
 - Node.js 20 or higher
 - Yarn 1.22 or higher
 - Docker (optional)
+- GNU Make
 
 ```bash
 # clone the repo
@@ -38,7 +39,12 @@ cd vietnamese-laws-ai-system-fe
 cp .env.example .env
 ```
 
-### 1. Development
+### 1. Running by `make` command
+```bash
+make install
+```
+
+### 2. Development
 
 1. Install dependencies
 
@@ -52,7 +58,7 @@ cp .env.example .env
    yarn dev
    ```
 
-### 2. Production
+### 3. Production
 
 1. Build container
 
