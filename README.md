@@ -40,6 +40,7 @@ cp .env.example .env
 ```
 
 ### 1. Running by `make` command
+
 ```bash
 make install
 ```
