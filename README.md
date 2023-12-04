@@ -2,8 +2,6 @@
 
 ## Features
 
-This repository is 🔋 battery packed with:
-
 - ⚡️ Next.js 14 with App Router
 - ⚛️ React 18
 - ✨ TypeScript
@@ -17,15 +15,28 @@ This repository is 🔋 battery packed with:
 - 🤖 Conventional Commit Lint — Make sure you & your teammates follow conventional commit
 - ⏰ Release Please — Generate your changelog by activating the `release-please` workflow
 - 👷 Github Actions — Lint your code on PR
-- 🚘 Automatic Branch and Issue Autolink — Branch will be automatically created on issue **assign**, and auto linked on PR
 - 🔥 Snippets — A collection of useful snippets
 - 👀 Open Graph Helper Function — Awesome open graph generated using [og](https://github.com/theodorusclarence/og), fork it and deploy!
 - 🗺 Site Map — Automatically generate sitemap.xml
-- 📦 Expansion Pack — Easily install common libraries, additional components, and configs.
 
 ## Getting Started
 
-- Using command **`make install`** or you can follow these below instructions:
+### 0. Prerequisites
+
+- Node.js 14 or higher
+- Yarn 1.22 or higher
+- Docker (optional)
+
+```bash
+# clone the repo
+git clone https://github.com/VKU-NewEnergy/vietnamese-laws-ai-system-fe
+
+# cd to the repo
+cd vietnamese-laws-ai-system-fe
+
+# make a copy of .env.example as .env and change the values accordingly
+cp .env.example .env
+```
 
 ### 1. Development
 

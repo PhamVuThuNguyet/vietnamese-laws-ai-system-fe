@@ -1,3 +1,12 @@
+/**
+ * Copyright (c) VKU.NewEnergy.
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @format
+ */
+
 export const isProd = process.env.NODE_ENV === 'production';
 export const isLocal = process.env.NODE_ENV === 'development';
 
