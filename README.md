@@ -24,6 +24,7 @@ This repository is 🔋 battery packed with:
 - 📦 Expansion Pack — Easily install common libraries, additional components, and configs.
 
 ## Getting Started
+
 - Using command **`make install`** or you can follow these below instructions:
 
 ### 1. Development
