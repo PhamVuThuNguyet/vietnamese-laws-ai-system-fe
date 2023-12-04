@@ -21,7 +21,7 @@
 
 ## Getting Started
 
-### 0. Prerequisites
+#### 1. Prerequisites
 
 - Node.js 20 or higher
 - Yarn 1.22 or higher
@@ -39,36 +39,36 @@ cd vietnamese-laws-ai-system-fe
 cp .env.example .env
 ```
 
-### 1. Running by `make` command
+#### 2. Launch app by `make` command
 
 ```bash
 make install
 ```
 
-### 2. Development
+#### 3. Development
 
-1. Install dependencies
+#### 3.1 Install dependencies
 
-   ```bash
-   yarn install
-   ```
+```
+yarn install
+```
 
-2. Run the development server
+#### 3.2 Run the development server
 
-   ```bash
-   yarn dev
-   ```
+```
+yarn dev
+```
 
-### 3. Production
+#### 4. Production
 
-1. Build container
+#### 4.1 Build container
 
-   ```bash
-   docker build -t vietnam-laws-fe .
-   ```
+```
+docker build -t vietnam-laws-fe .
+```
 
-2. Run container
+#### 4.2 Run container
 
-   ```bash
-   docker run -p 3000:3000 vietnam-laws-fe
-   ```
+```
+docker run -p 3000:3000 vietnam-laws-fe
+```
