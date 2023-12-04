@@ -18,7 +18,7 @@ const Message = ({
         initial={{ opacity: 0, marginTop: 10 }}
         animate={{ opacity: 1, marginTop: 0 }}
         className={clsx(
-          'flex min-h-[2rem] max-w-[250px] flex-row break-all rounded-lg px-4 py-2',
+          'flex min-h-[2rem] max-w-[300px] flex-row break-all rounded-lg px-4 py-2',
           isUser
             ? 'text-primary items-end bg-gray-200/70 text-right'
             : // : isLoading
@@ -26,7 +26,7 @@ const Message = ({
               'flex flex-col items-start bg-gray-200/70 text-gray-700'
         )}
       >
-        {!isUser && <p className='font-bold'>Chatbot</p>}
+        {!isUser && <p className='font-bold'>Vietnam Laws bot</p>}
         {isLoading ? (
           <div className='flex flex-row items-center space-x-1'>
             <div className='progress'></div>
