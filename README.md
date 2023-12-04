@@ -25,6 +25,8 @@ This repository is 🔋 battery packed with:
 
 ## Getting Started
 
+- Using command **`make install`** or you can follow these below instructions:
+
 ### 1. Development
 
 1. Install dependencies
