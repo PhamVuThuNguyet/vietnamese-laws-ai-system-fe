@@ -23,7 +23,7 @@
 
 ### 0. Prerequisites
 
-- Node.js 14 or higher
+- Node.js 20 or higher
 - Yarn 1.22 or higher
 - Docker (optional)
 
