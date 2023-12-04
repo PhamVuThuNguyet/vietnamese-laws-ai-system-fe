@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 import styles from './styles.module.scss';
 
-import { getChartersByConditions } from '@/lib/api/charters';
+import { getChartersByConditions, getChartersFromAI } from '@/lib/api/charters';
 
 import CharterModal from '@/components/charter-modal';
 import Container from '@/components/Container';
@@ -16,10 +16,10 @@ export default function SearchPage() {
   const searchParams = useSearchParams();
 
   const [charterData, setCharterData] = useState({
-    data: [],
+    data: [] as any[],
     total: 0,
   });
-  const [selectedCharter, setSelectedCharter] = useState({});
+  const [selectedCharter, setSelectedCharter] = useState<any>({});
   const [search, setSearch] = useState({
     q: searchParams.get('q') || '',
     page: Number(searchParams.get('page')) || 1,
@@ -27,9 +27,26 @@ export default function SearchPage() {
   });
 
   const fetchChartersData = async (query: Record<string, any> = {}) => {
+    if (!query?.q) {
+      setCharterData({
+        data: [],
+        total: 0,
+      });
+      return;
+    }
+
     try {
       const data = await getChartersByConditions(query);
-      setCharterData(data);
+      const curIndex = Number(data?.page) * Number(data?.size);
+      if (curIndex >= data.total) {
+        const dataAI = await getChartersFromAI(query.q);
+        setCharterData({
+          data: [...data.data, ...dataAI],
+          total: data.total + dataAI.length,
+        });
+      } else {
+        setCharterData(data);
+      }
       window.scrollTo(0, 0);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -62,13 +79,14 @@ export default function SearchPage() {
 
   return (
     <Container>
-      {Object.values(selectedCharter).length > 0 && (
-        <CharterModal
-          data={selectedCharter}
-          onClose={() => setSelectedCharter({})}
-          keyword={search.q}
-        />
-      )}
+      {Object.values(selectedCharter).length > 0 &&
+        !selectedCharter?.aiSearch && (
+          <CharterModal
+            data={selectedCharter}
+            onClose={() => setSelectedCharter({})}
+            keyword={search.q}
+          />
+        )}
 
       <section className='flex min-h-screen w-full max-w-xl flex-1 flex-col space-y-4 py-8'>
         <h1 className='text-center'>Tra cứu văn bản QPPL</h1>
