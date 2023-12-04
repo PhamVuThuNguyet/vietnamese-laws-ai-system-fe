@@ -1,7 +1,10 @@
 'use client';
 
+import { useMutation } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FormEvent, Fragment, useEffect, useRef, useState } from 'react';
+
+import { sendChatMessage } from '@/lib/api/chat';
 
 import ChatInput from '@/components/chatbot/ChatInput';
 
@@ -14,8 +17,19 @@ const ChatBot = () => {
 
   const [open, setOpen] = useState(false);
   const [inputText, setInputText] = useState('');
-  const [messageList, setMessageList] = useState<MessageProps[]>([]);
+  const [messageList, setMessageList] = useState<MessageProps[]>([
+    {
+      message:
+        'Xin chào! Tôi rất vui được giúp đỡ bạn. Nếu bạn có bất kỳ vấn đề nào liên quan đến luật pháp Việt Nam, tôi sẽ cố gắng giúp bạn. Bạn có thể đặt câu hỏi cụ thể hoặc chia sẻ vấn đề bạn đang gặp phải để tôi có thể hỗ trợ bạn tốt nhất có thể.',
+      isUser: false,
+    },
+  ]);
   const [isChatting, setIsChatting] = useState(false);
+
+  const sendMesasge = useMutation({
+    mutationKey: ['sendMessage', inputText],
+    mutationFn: sendChatMessage,
+  });
 
   const toggle = () => {
     setOpen(!open);
@@ -25,25 +39,27 @@ const ChatBot = () => {
     e.preventDefault();
     if (inputText === '') return;
 
-    setMessageList((msgs) => [
-      ...msgs,
+    const newMessageList = [
+      ...messageList,
       {
         message: inputText,
         isUser: true,
       },
-    ]);
+    ];
+    // show user message
+    setMessageList(newMessageList);
     setInputText('');
-    setIsChatting(true);
-    const answer = 'this is response';
 
+    setIsChatting(true);
+
+    const response = await sendMesasge.mutateAsync(newMessageList);
+    newMessageList.push({
+      message: response,
+      isUser: false,
+    });
+
+    setMessageList(newMessageList);
     setIsChatting(false);
-    setMessageList((msgs) => [
-      ...msgs,
-      {
-        message: answer,
-        isUser: false,
-      },
-    ]);
   };
 
   useEffect(() => {
@@ -66,7 +82,7 @@ const ChatBot = () => {
             exit={{ right: '1.5rem', opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className='flex h-[80vh] max-h-[80vh] min-w-[40vh] flex-col overflow-hidden rounded-2xl bg-white pb-4 shadow-lg sm:min-w-[380px]'>
+            <div className='flex h-[80vh] max-h-[80vh] min-w-[40vh] flex-col overflow-hidden rounded-2xl bg-white pb-4 shadow-lg sm:min-w-[450px]'>
               <ChatBotHeader onCloseChatBot={() => setOpen(false)} />
 
               <div
@@ -81,9 +97,7 @@ const ChatBot = () => {
                     isUser={message.isUser}
                   />
                 ))}
-                {isChatting && (
-                  <Message message='Chatting...' isLoading={true} />
-                )}
+                {isChatting && <Message message='Chatting...' />}
               </div>
 
               <form action={undefined}>
