@@ -60,7 +60,7 @@ export default function CharterModal({
   };
 
   useEffect(() => {
-    if (charterData.related.length > 0) {
+    if (charterData.related && charterData.related.length > 0) {
       fetchRelatedCharter(charterData).then((related) => {
         setCharterData({ ...charterData, related });
       });
@@ -105,11 +105,12 @@ export default function CharterModal({
         </div>
         <div className={styles.title}>{charterData.name}</div>
         <div className={styles.note}>
-          {charterData.note.map((note: Record<string, any>, index: number) => (
-            <a key={index} target='_blank' href={note.link}>
-              {note.description}
-            </a>
-          ))}
+          {charterData.note &&
+            charterData.note.map((note: Record<string, any>, index: number) => (
+              <a key={index} target='_blank' href={note.link}>
+                {note.description}
+              </a>
+            ))}
         </div>
         <div
           className={styles.description}
@@ -119,10 +120,10 @@ export default function CharterModal({
               .replaceAll('\n', '</br>'),
           }}
         ></div>
-        {charterData.related.length > 0 && (
+        {charterData.related && charterData.related.length > 0 && (
           <div className={styles.related}>
             Điều này có nội dung liên quan đến{' '}
-            {charterData.related.map(
+            {charterData?.related.map(
               (related: Record<string, any>, index: number) => (
                 <span
                   key={index}

@@ -88,14 +88,13 @@ export default function SearchPage() {
 
   return (
     <Container>
-      {Object.values(selectedCharter).length > 0 &&
-        !selectedCharter?.aiSearch && (
-          <CharterModal
-            data={selectedCharter}
-            onClose={() => setSelectedCharter({})}
-            keyword={search.q}
-          />
-        )}
+      {Object.values(selectedCharter).length > 0 && (
+        <CharterModal
+          data={selectedCharter}
+          onClose={() => setSelectedCharter({})}
+          keyword={search.q}
+        />
+      )}
 
       <section className='flex min-h-screen w-full max-w-xl flex-1 flex-col space-y-4 py-8'>
         <h1 className='text-center'>Tra cứu văn bản QPPL</h1>
@@ -118,7 +117,7 @@ export default function SearchPage() {
           {charterData.data.map((charter: Record<string, any>) => (
             <div
               className={styles.charter}
-              key={charter.id}
+              key={charter.id || Math.random()}
               onClick={() => setSelectedCharter(charter)}
             >
               <div className={styles['charter-title']}>{charter.name}</div>
