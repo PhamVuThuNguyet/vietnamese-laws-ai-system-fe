@@ -9,7 +9,7 @@ export const /**
 
   siteConfig = {
     title: 'Vietnamese laws',
-    description: 'description',
-    /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
-    url: 'https://google.com',
+    description:
+      'This project is aimed to build a searching system for Vietnamese Laws that utilized AI powers',
+    url: 'https://vku-vietnamese-laws.vercel.app',
   };
