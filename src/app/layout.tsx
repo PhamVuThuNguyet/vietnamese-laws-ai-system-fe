@@ -34,6 +34,12 @@ export default function RootLayout({
   return (
     <html>
       <body>
+        <head>
+          <meta
+            http-equiv='Content-Security-Policy'
+            content='upgrade-insecure-requests'
+          />
+        </head>
         <TanStackProvider>
           <Toaster />
           <div>{children}</div>
