@@ -27,12 +27,12 @@ const Message = ({
         initial={{ opacity: 0, marginTop: 10 }}
         animate={{ opacity: 1, marginTop: 0 }}
         className={clsx(
-          'flex min-h-[2rem] max-w-[300px] flex-row break-all rounded-lg px-4 py-2',
+          'flex min-h-[2rem] max-w-[300px] flex-row rounded-lg px-4 py-2',
           isUser
             ? 'text-primary items-end bg-gray-200/70 text-right'
             : // : isLoading
               // ? "border border-primary-400 bg-transparent text-primary-700"
-              'flex flex-col items-start bg-gray-200/70 text-gray-700'
+              'flex flex-col items-start bg-blue-200/70 text-gray-700'
         )}
       >
         {!isUser && <p className='font-bold'>Vietnam Laws bot</p>}
