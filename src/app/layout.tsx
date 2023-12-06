@@ -13,6 +13,7 @@ import { Toaster } from 'react-hot-toast';
 
 import '@/styles/globals.css';
 
+import Header from '@/components/Header';
 import TanStackProvider from '@/components/providers/TanStackProvider';
 
 import { siteConfig } from '@/constant/config';
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body>
         <TanStackProvider>
           <Toaster />
+          <Header />
           <div>{children}</div>
         </TanStackProvider>
       </body>
