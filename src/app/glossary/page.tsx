@@ -29,14 +29,6 @@ const Glossary = () => {
   });
 
   const fetchGlossariesData = async (query: Record<string, any> = {}) => {
-    if (!query?.q) {
-      setGlossariesData({
-        data: [],
-        total: 0,
-      });
-      return;
-    }
-
     try {
       const data = await getGloassaries(query);
       setGlossariesData(data);
@@ -72,7 +64,7 @@ const Glossary = () => {
 
   return (
     <Container>
-      <section className='flex min-h-screen w-full max-w-xl flex-1 flex-col space-y-4 py-8'>
+      <section className='flex min-h-screen w-full max-w-3xl flex-1 flex-col space-y-4 py-8'>
         <h1 className='text-center'>Tra cứu thuật ngữ</h1>
         <form className='flex items-center' onSubmit={handleSubmit}>
           <Input
@@ -115,7 +107,7 @@ const Glossary = () => {
                   className='border-b bg-white dark:border-gray-700 dark:bg-gray-800'
                 >
                   <th className='w-2 px-2 py-2 font-medium text-gray-900 dark:text-white'>
-                    {index + 1}
+                    {(search.page - 1) * search.size + index + 1}
                   </th>
                   <th
                     scope='row'
