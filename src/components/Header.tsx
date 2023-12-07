@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils';
 
 export default function Header() {
   const pathname = usePathname();
+  if (!pathname) return null;
 
   return (
     <header className='bg-white'>
